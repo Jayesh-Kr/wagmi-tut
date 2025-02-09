@@ -1,20 +1,18 @@
-import {useConnect,useDisconnect} from 'wagmi';
-const WalletConnect = () => {
-
-    const {connectors,connect} = useConnect();
-    console.log(connectors);
-    const {disconnect} = useDisconnect();
-
-  return (
+import { useConnect,useDisconnect } from 'wagmi'
+import {useNavigate} from 'react-router-dom';
+export default function WalletConnect() {
+  const { connectors, connect } = useConnect()
+  const {disconnect} = useDisconnect();
+  const navigate = useNavigate();
+  return( 
     <>
-   {connectors.map((connector) => {
-    <button key={connector?.uid} onClick={()=>connect({connector})}>
-        {connector?.name}
+    {connectors.map((connector) => (
+        <button key={connector.uid} onClick={()=> {connect({connector}); console.log("connected"); navigate("/page")}}>
+      {connector.name}
     </button>
-  })}
-  <button onClick={()=>disconnect()}>Disconnect</button>
+  ))
+}
+    <button onClick={()=>{disconnect();console.log("Disconnected")}} >Disconnect</button>
   </>
 )
 }
-
-export default WalletConnect
