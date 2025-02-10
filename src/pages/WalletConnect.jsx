@@ -7,7 +7,7 @@ export default function WalletConnect() {
   return( 
     <>
     {connectors.map((connector) => (
-        <button key={connector.uid} onClick={()=> {connect({connector}); console.log("connected"); navigate("/page")}}>
+        <button key={connector.uid} onClick={()=> {connect({connector});console.log(connector); console.log("connected"); navigate("/page")}}>
       {connector.name}
     </button>
   ))
