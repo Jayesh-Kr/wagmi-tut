@@ -19,7 +19,7 @@ const ContractInteract = () => {
     });
 
     if (error) {
-        console.log(error);
+        console.error("Contract Read Error:", error);
         return <div>Error: {error.shortMessage || error.message}</div>;
     }
     if (isPending) return <div>Loading...</div>;
