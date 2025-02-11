@@ -1,4 +1,4 @@
-import contractABI from './abi.json';
+import contractABI from './contractABI.js';
 const contractAddress = "0x234689392a3b1ed77Ad3efb889Ebe6F1FA77Bb98";
 
 let web3 = new Web3(window.ethereum);
@@ -30,3 +30,8 @@ async function connectWallet() {
     tweets = await contract.methods.getAllTweets(userAddress).call();
     console.log([...tweets]);
   }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('connectWalletBtn').addEventListener('click',connectWallet);
+    document.getElementById('callContractBtn').addEventListener('click',displayTweets);
+  });
