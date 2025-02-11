@@ -23,7 +23,7 @@ async function connectWallet() {
     }
   }
 
-  async function displayTweets() {
+  async function displayAllTweets() {
     let tweets=[];
     const userAddress = document.getElementById("address").innerText;
     console.log(userAddress);
@@ -31,7 +31,15 @@ async function connectWallet() {
     console.log([...tweets]);
   }
 
+  async function displayParticularTweet() {
+    const userAddress = document.getElementById("address").innerText;
+    console.log(userAddress);
+    const tweet = await contract.methods.getTweet(0).call();
+    console.log(tweet);
+  }
+
   document.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('connectWalletBtn').addEventListener('click',connectWallet);
-    document.getElementById('callContractBtn').addEventListener('click',displayTweets);
+    document.getElementById('callContractBtn').addEventListener('click',displayAllTweets);
+    document.getElementById('getOneTweet').addEventListener('click',displayParticularTweet);
   });
